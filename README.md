@@ -1,4 +1,3 @@
-```markdown
 # Weighted Polygon Optimization
 
 ## Problem Statement
