@@ -25,7 +25,8 @@ Our solution uses a combination of cluster analysis and dynamic programming:
 3. **Hole Analysis**
    - Analyze each hole for potential inclusion
    - Including a hole can:
-     - Reduce total vertex count by merging boundaries
+     - Requires at least 2 additional vertices for "tubing" to connect it to the main polygon
+     - Reduce total vertex count by merging boundaries 
      - Add negative weight to the total sum
      - Potentially simplify the polygon shape
 
@@ -93,14 +94,12 @@ To run the solution:
 1. Make sure you have Python installed on your system
 2. Clone this repository:
    ```
-   git clone https://github.com/your-repo/kriti25-optimization.git
-   cd kriti25-optimization
+   git clone https://github.com/BrajeshMuwel17/Weighted-Polygon-Optimization.git
    ```
 
 3. Run the Python script:
-        python run.py
    ```
-   python optimize_polygon.py [input_file] [output_file]
+   python Run.py [input_file] [output_file]
    ```
    
    Where:
@@ -109,10 +108,15 @@ To run the solution:
 
 ### Input Format
 The input file should contain:
-- First line: Two integers N and M (grid dimensions)
-- Next N lines: M space-separated integers representing weights of points
+- First line: A single integers N (Number of Positive points)
+- Next N lines: 3 space-separated integers x, y, w (0 <= x,y <= 10,000 , w>=0) representing x coordinate, y coordinate, weight at point (x,y)
+- Next line : A single integers M  (Number of Negative points)
+- Next M lines: 3 space-separated integers x, y, w (0 <= x,y <= 10,000 , w<0) representing x coordinate, y coordinate, weight at point (x,y)
+- Sum of N and M combined does not exceed 10,000 ( 1 <= N+M <= 10,000)
 
 ### Output Format
 The output file will contain:
-- First line: Number of vertices in the polygon
-- Next V lines: Coordinates of each vertex in clockwise order
+- First line: A single integer representing the answer (total sum of weights enclosed)
+- Next line: Two integers - number of edges (E) and number of vertices (V) in the optimal polygon (1<= V,E <=1000)
+- Next V lines: Coordinates of each vertex of polygon (x,y)  (0<= x,y <= 10,000)
+- Additionally coordinates of Polygon can be floating point type
