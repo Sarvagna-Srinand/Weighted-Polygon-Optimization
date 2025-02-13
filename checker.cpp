@@ -202,53 +202,53 @@ vector<pair<Point<double>, int>> generateRandomShellsMines(int numItems, double 
     return items;
 }
 
-int main(int argc, char* argv[]) {
+int main() {
 
-     if (argc < 3) {  // expecting two file names, for example
-        cerr << "Usage: " << argv[0] << " <edges_file> <input_file>" << endl;
-        return 1;
-    }
+    //  if (argc < 3) {  // expecting two file names, for example
+    //     cerr << "Usage: " << argv[0] << " <edges_file> <input_file>" << endl;
+    //     return 1;
+    // }
 
-    ifstream file1(argv[1]);
-    if (!file1) {
-        cerr << "Error opening file " << argv[1] << endl;
-        return 1;
-    }
+    // ifstream file1(argv[1]);
+    // if (!file1) {
+    //     cerr << "Error opening file " << argv[1] << endl;
+    //     return 1;
+    // }
     srand(time(0)); // Seed for randomness
     //put edges in this file
     //freopen("input09.txt","r",stdin);
     vector<pair<Point<double>, Point<double>>> edges;
     // ifstream file1("Edges.txt");
-    int num_edges; file1>>num_edges;
-    file1>>num_edges;
+    int num_edges; cin>>num_edges;
+    cin>>num_edges;
     for(int i=0; i<num_edges; i++) {
-        double a,b,c,d; file1>>a>>b>>c>>d;
+        double a,b,c,d; cin>>a>>b>>c>>d;
         edges.push_back({{a,b},{c,d}});
     }
-    file1.close();
+    // file1.close();
 
-    ifstream file2(argv[2]);
-    if (!file2) {
-        cerr << "Error opening file " << argv[2] << endl;
-        return 1;
-    }
+    // ifstream file2(argv[2]);
+    // if (!file2) {
+    //     cerr << "Error opening file " << argv[2] << endl;
+    //     return 1;
+    // }
 
     vector<pair<Point<double>, int>> given_shells_mines;
     // ifstream file2("./input/input00.txt");
 
-    int n; file2>>n;
+    int n; cin>>n;
     for(int i=0; i<n; i++) {
-        double x,y; file2>>x>>y;
-        int val; file2>>val;
+        double x,y; cin>>x>>y;
+        int val; cin>>val;
         given_shells_mines.push_back({{x,y},val});
     }
-    int m; file2>>m;
+    int m; cin>>m;
     for(int i=0; i<m; i++) {
-        double x,y; file2>>x>>y;
-        int val; file2>>val;
+        double x,y; cin>>x>>y;
+        int val; cin>>val;
         given_shells_mines.push_back({{x,y},-val});
     }
-    file2.close();
+    // file2.close();
     freopen("output.txt","w",stdout);
     int score=score_calc(edges,given_shells_mines);
     if(score<=0 || num_edges > 1000 || num_edges==0){
