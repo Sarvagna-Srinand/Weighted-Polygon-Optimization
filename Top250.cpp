@@ -121,7 +121,7 @@ int Top250ans(vector<point> &P,vector<int> &aVal,vector<point> &Q,vector<int> &b
 int main(){
 ios_base::sync_with_stdio(false);
 cin.tie(NULL);
-    freopen("./final_input/input19.txt","r",stdin);
+    freopen("./final_input/input00.txt","r",stdin);
     
     int n, m;
 	cin >> n;
@@ -147,11 +147,11 @@ cin.tie(NULL);
     int top250ans=Top250ans(P,positive,Q,negative,edges250);
 
     // 250output
-    freopen("./output.txt","w",stdout);
+    freopen("./Output.txt","w",stdout);
     cout<<top250ans<<endl;
     cout<<edges250.size()<<" "<<edges250.size()<<endl;
     for(auto i:edges250){
-         cout<<"("<<i.x1<<","<<i.y1<<") , "<<"("<<i.x2<<","<<i.y2<<")\n";
+         cout<<"("<<i.x1<<","<<i.y1<<"), "<<"("<<i.x2<<","<<i.y2<<")\n";
         //  cout<<"{{"<<i.x1<<","<<i.y1<<"} , "<<"{"<<i.x2<<","<<i.y2<<"}},\n";
         //  cout<<i.x1<<" "<<i.y1<<" "<<i.x2<<" "<<i.y2<<endl;
     }

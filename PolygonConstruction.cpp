@@ -522,8 +522,8 @@ vector<pair<pair<float, float>, pair<float, float>>> give_edges(vector<vector<bo
 
 int main()
 {
-    freopen("output.txt", "r", stdin);
-    freopen("poly05.txt","w",stdout);
+    freopen("Boolean_B.txt", "r", stdin);
+    freopen("Edges.txt","w",stdout);
     vector<vector<bool>>B(100,vector<bool>(100,0));
     for(int j=0;j<100;j++){
         for(int i=0;i<100;i++){
@@ -536,6 +536,7 @@ int main()
     cout<<ans.size()<<" "<<ans.size()<<endl;
     for(auto answer:ans){
         // cout<<"("<<answer.first.first<<", "<<answer.first.second<<"),"<<"("<<answer.second.first<<","<<answer.second.second<<"),\n";
-        cout<<"{{"<<answer.first.first<<", "<<answer.first.second<<"},"<<"{"<<answer.second.first<<","<<answer.second.second<<"}},\n";
+        // cout<<"{{"<<answer.first.first<<", "<<answer.first.second<<"},"<<"{"<<answer.second.first<<","<<answer.second.second<<"}},\n";
+        cout<<answer.first.first<<" "<<answer.first.second<<" "<<answer.second.first<<" "<<answer.second.second<<"\n";
     }
 }

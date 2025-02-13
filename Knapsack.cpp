@@ -112,8 +112,7 @@ bool is_vertex(int x , int y , int z , int w , vector <vector <int>>& num){
 int32_t main() {
 	cin.tie(nullptr);
 	ios::sync_with_stdio(false);
-    freopen("./final_input/input19.txt", "r", stdin); 
-	// freopen("./chanduOutput.txt", "w", stdout);
+    freopen("./input/input00.txt", "r", stdin); 
     int n ; 
 	cin >> n ; 
 	int sum = 0 ; 
@@ -134,9 +133,10 @@ int32_t main() {
 	vector <vector <int>> grid(MAXN + 5, vector <int> (MAXN  + 5, 0)) ;
 	vector <vector <bool>> visited(MAXN + 5 , vector <bool> (MAXN + 5 , false)) ;
 	vector <vector <int>> num(MAXN + 5 , vector <int> (MAXN + 5 , 0)) ;
+	int compressionFactor= (10000 + MAXN ) / MAXN ;
 	for(int j =  0 ; j < (n + m) ; j ++){
-		int x = arr[j].first.first / ((10000 + MAXN ) / MAXN) ; 
-		int y = arr[j].first.second / ((10000 + MAXN ) / MAXN); 
+		int x = arr[j].first.first / compressionFactor ; 
+		int y = arr[j].first.second / compressionFactor ; 
 		grid[x][y] += arr[j].second ; 
 	}
 	vector <pair <int , int>> cluster_data ; 
@@ -257,7 +257,7 @@ int32_t main() {
      
     // Reverse Knapsack
 	int hole_cnt = cluster_holes.size() - 1  ; 
-    int tar = max(tot_verti + (hole_cnt)*2 - 550 , 0LL) ; 
+    int tar = max(tot_verti + (hole_cnt)*2 - 450 , 0LL) ; 
 	cout << tar << endl ; 
     vector <vector <int>> dp1(cluster_holes.size() + 1 , vector <int> (tar + 5 , inf)) ;
 
@@ -330,7 +330,7 @@ int32_t main() {
 	cerr << "finalvertice " << finalVertices.size() << endl; 
 
 
-	freopen("./output.txt", "w", stdout);
+	freopen("./Boolean_B.txt", "w", stdout);
 
 	for(int j = 0 ; j < MAXN ; j ++){
 		for(int k = 0 ; k < MAXN ; k ++){
