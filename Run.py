@@ -17,7 +17,7 @@ def compile_executables():
     ]
     for src, exe in files_to_compile:
         print(f"Compiling {src} into {exe}...")
-        result = subprocess.run(["g++", src, "-o", exe])
+        result = subprocess.run(["g++", src, "-Wl,--stack,8388608", "-o", exe])
         if result.returncode != 0:
             print(f"Compilation failed for {src}. Exiting.")
             sys.exit(1)
