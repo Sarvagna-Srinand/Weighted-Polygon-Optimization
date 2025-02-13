@@ -522,7 +522,7 @@ vector<pair<pair<float, float>, pair<float, float>>> give_edges(vector<vector<bo
 
 int main()
 {
-    freopen("Boolean_B.txt", "r", stdin);
+    // freopen("Boolean_B.txt", "r", stdin);
     freopen("Edges.txt","w",stdout);
     vector<vector<bool>>B(100,vector<bool>(100,0));
     for(int j=0;j<100;j++){

@@ -7,14 +7,14 @@
 #include <time.h>
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
+#define ll long long
 #define ll long long
 #define ld long double
 #define S second
 #define B begin
-int inf =  1e15 ; 
+ll inf =  1e15 ; 
 
-const int MAXN  =  100 ; 
+const ll MAXN  =  100 ; 
 namespace myrandom {
 	uint64_t seed = 1234567891234567891;
 	uint64_t xorshift64() {
@@ -32,15 +32,15 @@ namespace myrandom {
 		return l + z * (r - l);
 	}
 }
-int score = 0 ; 
-int cnt = 0 ;
-int e = 0 ; 
-void dfs(vector <vector <int>>& grid , vector <vector <bool>>& visited , vector <vector <int>>& num,  int x , int y ){
+ll score = 0 ; 
+ll cnt = 0 ;
+ll e = 0 ; 
+void dfs(vector <vector <ll>>& grid , vector <vector <bool>>& visited , vector <vector <ll>>& num,  ll x , ll y ){
 	visited[x][y] = true ; 
 	score += grid[x][y] ; 
 	num[x][y] = cnt ; 
-	for(int j = -1 ; j <=1 ; j++){
-		for(int k = - 1 ; k <=1 ; k ++){
+	for(ll j = -1 ; j <=1 ; j++){
+		for(ll k = - 1 ; k <=1 ; k ++){
 			if(abs(j) + abs(k) == 1){
 				if(x + j >= 0 and x + j < MAXN and y + k >= 0 and y + k < MAXN and !visited[x + j][y + k] and grid[x + j][y + k] >= 0){
 					dfs(grid , visited , num , x + j , y + k) ; 
@@ -50,7 +50,7 @@ void dfs(vector <vector <int>>& grid , vector <vector <bool>>& visited , vector 
 	}
 }
 
-void dfs_holes(vector <vector <int>>& grid , vector <vector <bool>>& visited , vector <vector <int>>& num,  int x , int y , set <int>& neigh){
+void dfs_holes(vector <vector <ll>>& grid , vector <vector <bool>>& visited , vector <vector <ll>>& num,  ll x , ll y , set <ll>& neigh){
     visited[x][y] = true ; 
     score += grid[x][y] ; 
     num[x][y] = cnt ; 
@@ -58,8 +58,8 @@ void dfs_holes(vector <vector <int>>& grid , vector <vector <bool>>& visited , v
         e = 1 ; 
         
     }
-    for(int j = -1 ; j <= 1 ; j ++){
-        for(int k = -1 ; k <= 1 ; k ++){
+    for(ll j = -1 ; j <= 1 ; j ++){
+        for(ll k = -1 ; k <= 1 ; k ++){
             if((abs(j) + abs(k)) == 1){
                 if(x + j >= 0 and x + j < MAXN and y + k >= 0 and y + k < MAXN and !visited[x + j][y + k] and grid[x + j][y + k] <= 0){
                     dfs_holes(grid , visited , num , x + j , y + k , neigh) ; 
@@ -73,9 +73,9 @@ void dfs_holes(vector <vector <int>>& grid , vector <vector <bool>>& visited , v
     }
 }
 
-bool is_vertex(int x , int y , int z , int w , vector <vector <int>>& num){
+bool is_vertex(ll x , ll y , ll z , ll w , vector <vector <ll>>& num){
 	if(x  == z and y == w){
-        int e = 0 ; int e1 = 0 ; 
+        ll e = 0 ; ll e1 = 0 ; 
 		if(x > 0 and num[x - 1][y] == num[x][y]){e ++ ;}
 		if(y > 0 and num[x][y - 1] == num[x][y]){e ++ ; }
         if(x > 0 and y > 0  and num[x - 1][y - 1] == num[x][y]){e1 ++  ; }
@@ -83,7 +83,7 @@ bool is_vertex(int x , int y , int z , int w , vector <vector <int>>& num){
         if(e == 2 and e1 == 1){return false ; }
 	}
 	if(x == z and y == w - 1){
-        int e = 0 ; int e1 = 0 ; 
+        ll e = 0 ; ll e1 = 0 ; 
 		if(x > 0 and num[x - 1][y] == num[x][y]){e++  ;  }
 		if(y < MAXN-1 and num[x][y + 1] == num[x][y]){e++ ; }
         if(x > 0 and y < MAXN - 1 and num[x - 1][y + 1] == num[x][y]){e1 ++ ; }
@@ -91,7 +91,7 @@ bool is_vertex(int x , int y , int z , int w , vector <vector <int>>& num){
         if(e == 2 and e1 == 1){return false ; }
 	}
 	if(x == z - 1 and y == w){
-        int e = 0 ;  int e1 = 0 ; 
+        ll e = 0 ;  ll e1 = 0 ; 
 		if(x < MAXN-1 and num[x + 1][y] == num[x][y]){e++ ; }
 		if(y > 0 and num[x][y - 1] == num[x][y]){e++ ; }
 		if(x < MAXN - 1 and y > 0 and num[x + 1][y - 1] == num[x][y]){e1 ++ ; }
@@ -99,7 +99,7 @@ bool is_vertex(int x , int y , int z , int w , vector <vector <int>>& num){
         if(e == 2 and e1 == 1){return false ; }
 	}
 	if(x == z - 1 and y == w - 1){
-        int e = 0 ; int e1 = 0 ; 
+        ll e = 0 ; ll e1 = 0 ; 
 		if(x < MAXN-1 and num[x + 1][y] == num[x][y]){e ++  ; }
 		if(y < MAXN-1 and num[x][y + 1] == num[x][y]){e ++ ; }
 		if(x < MAXN - 1 and y < MAXN - 1 and num[x + 1][y + 1] == num[x][y]){e1 ++ ; }
@@ -109,43 +109,45 @@ bool is_vertex(int x , int y , int z , int w , vector <vector <int>>& num){
     return true ;
 }
 
-int32_t main() {
+int main() {
 	cin.tie(nullptr);
 	ios::sync_with_stdio(false);
-    freopen("./input/input00.txt", "r", stdin); 
-    int n ; 
+
+	// freopen("./input/input00.txt", "r", stdin);
+
+    ll n ; 
 	cin >> n ; 
-	int sum = 0 ; 
-	vector <pair <pair <int , int> , int>> arr(1e4 + 5) ; 
-	for(int i = 0 ; i < n ; i++){
+	ll sum = 0 ; 
+	vector <pair <pair <ll , ll> , ll>> arr(1e4 + 5) ; 
+	for(ll i = 0 ; i < n ; i++){
 		cin >> arr[i].first.first >> arr[i].first.second >> arr[i].second ; 
 		sum += arr[i].second ; 
 	}
-	int m ; 
+	ll m ; 
 	cin >> m  ; 
-	for(int j = 0 ; j < m ; j ++){
+	for(ll j = 0 ; j < m ; j ++){
 		ll a , b , c ;
 		cin >> a >> b >> c ; 
 		arr[n + j] = {{a , b} , -c} ;
 	}
 
 	
-	vector <vector <int>> grid(MAXN + 5, vector <int> (MAXN  + 5, 0)) ;
+	vector <vector <ll>> grid(MAXN + 5, vector <ll> (MAXN  + 5, 0)) ;
 	vector <vector <bool>> visited(MAXN + 5 , vector <bool> (MAXN + 5 , false)) ;
-	vector <vector <int>> num(MAXN + 5 , vector <int> (MAXN + 5 , 0)) ;
-	int compressionFactor= (10000 + MAXN ) / MAXN ;
-	for(int j =  0 ; j < (n + m) ; j ++){
-		int x = arr[j].first.first / compressionFactor ; 
-		int y = arr[j].first.second / compressionFactor ; 
+	vector <vector <ll>> num(MAXN + 5 , vector <ll> (MAXN + 5 , 0)) ;
+	ll compressionFactor= (10000 + MAXN ) / MAXN ;
+	for(ll j =  0 ; j < (n + m) ; j ++){
+		ll x = arr[j].first.first / compressionFactor ; 
+		ll y = arr[j].first.second / compressionFactor ; 
 		grid[x][y] += arr[j].second ; 
 	}
-	vector <pair <int , int>> cluster_data ; 
+	vector <pair <ll , ll>> cluster_data ; 
 	
 	cnt = 1 ; 
-	int pos_cnt = 0  ;
+	ll pos_cnt = 0  ;
 	cluster_data.push_back({0 , 0}) ; 
-	for(int j = 0 ; j < MAXN ; j ++){
-		for(int k = 0 ; k < MAXN ; k ++){
+	for(ll j = 0 ; j < MAXN ; j ++){
+		for(ll k = 0 ; k < MAXN ; k ++){
 			if(grid[j][k] > 0){pos_cnt ++ ; }
 			if(grid[j][k] > 0 and !visited[j][k]){
 				score = 0 ; 
@@ -155,11 +157,11 @@ int32_t main() {
 			}
 		}
 	}
-    int pos = cnt ; 
-	set <pair <int , int>> s[MAXN * MAXN + 1] ; 
-	set <pair <int , int>> vertices_overall ; 
-	for(int j = 0 ; j < MAXN ; j ++){
-		for(int k = 0 ; k < MAXN ; k ++){
+    ll pos = cnt ; 
+	set <pair <ll , ll>> s[MAXN * MAXN + 1] ; 
+	set <pair <ll , ll>> vertices_overall ; 
+	for(ll j = 0 ; j < MAXN ; j ++){
+		for(ll k = 0 ; k < MAXN ; k ++){
 			if(num[j][k]){
 				if(is_vertex(j , k , j  , k , num)){
 					s[num[j][k]].insert({j , k}) ; 
@@ -180,39 +182,39 @@ int32_t main() {
 			}
 		}
 	}
-    int tot_verti = 0 ; 
-    int pos_score = 0 ; 
-	for(int j  = 1 ; j < cluster_data.size() ; j++){
+    ll tot_verti = 0 ; 
+    ll pos_score = 0 ; 
+	for(ll j  = 1 ; j < cluster_data.size() ; j++){
 		cluster_data[j].second = s[j].size() ;
         tot_verti += s[j].size() ;
         pos_score += cluster_data[j].first ;
 	}
-	int tot = vertices_overall.size() ;
+	ll tot = vertices_overall.size() ;
 	cout << tot << endl ; 
 	cout << "Priniting the cluster data" << endl ;
 
 	cout << tot_verti << " " << pos_score << " " << cluster_data.size() - 1 <<  endl ; 
-	// for(int j =1 ; j < cluster_data.size() ; j ++){
+	// for(ll j =1 ; j < cluster_data.size() ; j ++){
 	// 	cout << cluster_data[j].first << " " << cluster_data[j].second  << endl ; 
 	// }
 
-	// for(int j = 0 ; j < MAXN ; j ++){
-	// 	for(int k = 0 ; k  < MAXN ; k ++){
+	// for(ll j = 0 ; j < MAXN ; j ++){
+	// 	for(ll k = 0 ; k  < MAXN ; k ++){
 	// 		cout << (visited[j][k] ? "#" : ".") ;
 	// 	}
 	// 	cout << endl ; 
 	// }
-    vector <pair <int ,int>> cluster_holes ; 
+    vector <pair <ll ,ll>> cluster_holes ; 
 	cluster_holes.push_back({0 , 0 }) ; 
-	int startHoles = cnt ;
-	vector <int> hole_num ; 
+	ll startHoles = cnt ;
+	vector <ll> hole_num ; 
 	hole_num.push_back(0) ; 
-    for(int j = 0 ; j  < MAXN ; j ++){
-        for(int k = 0 ; k < MAXN ; k ++){
+    for(ll j = 0 ; j  < MAXN ; j ++){
+        for(ll k = 0 ; k < MAXN ; k ++){
             if(grid[j][k] <= 0 and !visited[j][k]){
                 score = 0 ; 
                 e = 0 ; 
-				set <int> neigh ; 
+				set <ll> neigh ; 
 				dfs_holes(grid , visited , num , j , k , neigh) ; 
                 if(e == 0){
 					hole_num.push_back(cnt) ; 
@@ -223,8 +225,8 @@ int32_t main() {
         }
     }
 	
-    for(int j = 0 ; j < MAXN ; j ++){
-		for(int k = 0 ; k < MAXN ; k ++){
+    for(ll j = 0 ; j < MAXN ; j ++){
+		for(ll k = 0 ; k < MAXN ; k ++){
 			if(num[j][k] >= pos){
 				if(is_vertex(j , k , j  , k , num)){
 					s[num[j][k]].insert({j , k}) ; 
@@ -241,30 +243,30 @@ int32_t main() {
 			}
 		}
 	}
-    int hole_sum  = 0 ; 
-    for(int j = 1 ; j < cluster_holes.size() ; j++){
+    ll hole_sum  = 0 ; 
+    for(ll j = 1 ; j < cluster_holes.size() ; j++){
         cluster_holes[j].second = s[cluster_holes[j].second].size() + 2 ;
 		hole_sum += cluster_holes[j].first ; 
     }
 
 	cout << "Printing the cluster holes" << endl ;
 	cout << cluster_holes.size() - 1 << " " << hole_sum << endl ; 
-	for(int j = 1 ; j < cluster_holes.size() ; j ++){
+	for(ll j = 1 ; j < cluster_holes.size() ; j ++){
 		// cout << cluster_holes[j].second << " " << cluster_holes[j].first << endl ;
 	}
     
 
      
     // Reverse Knapsack
-	int hole_cnt = cluster_holes.size() - 1  ; 
-    int tar = max(tot_verti + (hole_cnt)*2 - 450 , 0LL) ; 
+	ll hole_cnt = cluster_holes.size() - 1  ; 
+    ll tar = max(tot_verti + (hole_cnt)*2 - 450 , 0LL) ; 
 	cout << tar << endl ; 
-    vector <vector <int>> dp1(cluster_holes.size() + 1 , vector <int> (tar + 5 , inf)) ;
+    vector <vector <ll>> dp1(cluster_holes.size() + 1 , vector <ll> (tar + 5 , inf)) ;
 
 
     dp1[0][0] = 0 ; 
-    for(int j = 1 ; j < cluster_holes.size() ; j++ ){
-        for(int k = 0 ; k <= (tar + 2) ; k ++){
+    for(ll j = 1 ; j < cluster_holes.size() ; j++ ){
+        for(ll k = 0 ; k <= (tar + 2) ; k ++){
             dp1[j][k] = dp1[j - 1][k] ; 
             if(k <= cluster_holes[j].second){
                 dp1[j][k] = min(dp1[j][k] , cluster_holes[j].first) ; 
@@ -276,9 +278,9 @@ int32_t main() {
 
     }
 
-    int curTarget = tar ;
-	set<int> backtrackedholes;
-	for(int j = cluster_holes.size() - 1 ; j >= 1 ; j --){
+    ll curTarget = tar ;
+	set<ll> backtrackedholes;
+	for(ll j = cluster_holes.size() - 1 ; j >= 1 ; j --){
 		if(curTarget >= cluster_holes[j].second and dp1[j][curTarget] >= dp1[j - 1][curTarget - cluster_holes[j].second] + cluster_holes[j].first){
 			curTarget -= cluster_holes[j].second ; 
 			backtrackedholes.insert(hole_num[j]) ;
@@ -290,11 +292,11 @@ int32_t main() {
 		}
 	}
 
-	int actualvalue = 0  ;
+	ll actualvalue = 0  ;
 
-	vector<vector<int>> finalBoutput ( MAXN, vector<int> (MAXN , 0))  ; 
-	for(int j = 0 ; j < MAXN ; j++){
-		for(int k  = 0 ; k <MAXN ; k++){
+	vector<vector<ll>> finalBoutput ( MAXN, vector<ll> (MAXN , 0))  ; 
+	for(ll j = 0 ; j < MAXN ; j++){
+		for(ll k  = 0 ; k <MAXN ; k++){
 			if(backtrackedholes.find(num[j][k]) != backtrackedholes.end()){
 				finalBoutput[j][k] = 1 ; 
 				actualvalue += grid[j][k] ;
@@ -306,9 +308,9 @@ int32_t main() {
 		}
 	}
 
-	set<pair<int,int>> finalVertices ; 
-	for(int j = 0 ; j < MAXN ; j ++){
-		for(int k = 0 ; k < MAXN ; k ++){
+	set<pair<ll,ll>> finalVertices ; 
+	for(ll j = 0 ; j < MAXN ; j ++){
+		for(ll k = 0 ; k < MAXN ; k ++){
 			if(finalBoutput[j][k]){
 				if(is_vertex(j , k , j  , k , finalBoutput)){
 					finalVertices.insert({j , k}) ; 
@@ -332,8 +334,8 @@ int32_t main() {
 
 	freopen("./Boolean_B.txt", "w", stdout);
 
-	for(int j = 0 ; j < MAXN ; j ++){
-		for(int k = 0 ; k < MAXN ; k ++){
+	for(ll j = 0 ; j < MAXN ; j ++){
+		for(ll k = 0 ; k < MAXN ; k ++){
 			cout << (finalBoutput[j][k] ) << " " ; 
 		}
 		cout << endl ; 
