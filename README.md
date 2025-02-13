@@ -69,6 +69,10 @@ Our polygon generator takes a compressed Boolean grid as input and constructs a 
 - Ensuring tubes do not occupy any false grid spaces
 - Eliminating holes by extending connections to enclose outer boundaries
 
+
+![image](https://media-hosting.imagekit.io//d2a1ffeba00540ff/screenshot_1739474088267.png?Expires=1834082091&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=pPrI8-VSxV8lWuaCUOD6UBv2rF50rYiCCCVCjO6HBpaFD1EFHOL53PFkXZeYh4EHJWu-y1jduOAZqtvZsnZ2wzNySIqfGclknr8QnEcPHfb0IqX7gFV9Wmavkn0ZgcfBAKVxXY18wynfW~HjsAwQG0u8b7ncrpyGfCcn~iwE4cy3yiLrhWYEw3MGYmUeh19tzOcbFrRniemZQ3B9lw1ry8LiUk0Pto6k5cORsdsMd3IKNzLzE2t2TtfaPh7vRu3IA7It5kIJhNMFMwwI3Wox7QJoPnVaXTRIDOAewKbrSUJbRYjldcAYMzRFhI7oMJvhIXJ3L1WynE8vqkmqiExt6w__)
+
+
 ### Checker
 Validates that:
 1. Number of edges ≤ 1000
