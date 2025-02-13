@@ -48,8 +48,17 @@ Our solution uses a combination of cluster analysis and dynamic programming:
   - Final vertex count ≤ 1000
   - Maximize total weight
 
+### Grid Compression
+
+- Compress original grid with 100:1 ratio
+- Preserve relative positions of all points
+- Maintain cluster structures while reducing computational complexity
+- Map final solution back to original coordinates
+
+The compression step is crucial for making the DP optimization tractable while preserving all the necessary spatial relationships between points.
+
 ### Solution Steps
-1. Calculate base metrics for positive clusters
+1. Calculate base metrics for positive clusters 
 2. Identify candidate holes for inclusion
 3. Apply DP to select optimal set of holes
 4. Construct final polygon boundary
@@ -75,11 +84,11 @@ Validates that:
 - Choose top 250 columns based on maximum suffix sums
 
 ## Time Complexity
-- Cluster identification: O(N) where N is number of points
+- Cluster identification: O(N*N), where N is Size of the compressed gird
 - DP solution: O(H * V) where:
   - H = number of holes
   - V = number of vertices to reduce
-- Column-based approach: O(N * M) for column sums, O(M log M) for selection
+- Column-based approach: O(N * M) for column sums, O(M log M) for selection, where N and M are without compression
 
 ## Results and Benefits
 - Achieves vertex count within 1000-vertex limit
