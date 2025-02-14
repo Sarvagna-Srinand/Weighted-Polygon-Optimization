@@ -1,4 +1,3 @@
-```markdown
 # Weighted Polygon Optimization
 
 ## Problem Statement
@@ -26,7 +25,8 @@ Our solution uses a combination of cluster analysis and dynamic programming:
 3. **Hole Analysis**
    - Analyze each hole for potential inclusion
    - Including a hole can:
-     - Reduce total vertex count by merging boundaries
+     - Requires at least 2 additional vertices for "tubing" to connect it to the main polygon
+     - Reduce total vertex count by merging boundaries 
      - Add negative weight to the total sum
      - Potentially simplify the polygon shape
 
@@ -48,8 +48,17 @@ Our solution uses a combination of cluster analysis and dynamic programming:
   - Final vertex count ≤ 1000
   - Maximize total weight
 
+### Grid Compression
+
+- Compress original grid with 100:1 ratio
+- Preserve relative positions of all points
+- Maintain cluster structures while reducing computational complexity
+- Map final solution back to original coordinates
+
+The compression step is crucial for making the DP optimization tractable while preserving all the necessary spatial relationships between points.
+
 ### Solution Steps
-1. Calculate base metrics for positive clusters
+1. Calculate base metrics for positive clusters 
 2. Identify candidate holes for inclusion
 3. Apply DP to select optimal set of holes
 4. Construct final polygon boundary
@@ -59,6 +68,10 @@ Our polygon generator takes a compressed Boolean grid as input and constructs a 
 - Connecting all points marked as true using narrow tubes
 - Ensuring tubes do not occupy any false grid spaces
 - Eliminating holes by extending connections to enclose outer boundaries
+
+
+![image](https://media-hosting.imagekit.io//d2a1ffeba00540ff/screenshot_1739474088267.png?Expires=1834082091&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=pPrI8-VSxV8lWuaCUOD6UBv2rF50rYiCCCVCjO6HBpaFD1EFHOL53PFkXZeYh4EHJWu-y1jduOAZqtvZsnZ2wzNySIqfGclknr8QnEcPHfb0IqX7gFV9Wmavkn0ZgcfBAKVxXY18wynfW~HjsAwQG0u8b7ncrpyGfCcn~iwE4cy3yiLrhWYEw3MGYmUeh19tzOcbFrRniemZQ3B9lw1ry8LiUk0Pto6k5cORsdsMd3IKNzLzE2t2TtfaPh7vRu3IA7It5kIJhNMFMwwI3Wox7QJoPnVaXTRIDOAewKbrSUJbRYjldcAYMzRFhI7oMJvhIXJ3L1WynE8vqkmqiExt6w__)
+
 
 ### Checker
 Validates that:
@@ -75,11 +88,11 @@ Validates that:
 - Choose top 250 columns based on maximum suffix sums
 
 ## Time Complexity
-- Cluster identification: O(N) where N is number of points
+- Cluster identification: O(N*N), where N is Size of the compressed gird
 - DP solution: O(H * V) where:
   - H = number of holes
   - V = number of vertices to reduce
-- Column-based approach: O(N * M) for column sums, O(M log M) for selection
+- Column-based approach: O(N * M) for column sums, O(M log M) for selection, where N and M are without compression
 
 ## Results and Benefits
 - Achieves vertex count within 1000-vertex limit
@@ -94,14 +107,12 @@ To run the solution:
 1. Make sure you have Python installed on your system
 2. Clone this repository:
    ```
-   git clone https://github.com/your-repo/kriti25-optimization.git
-   cd kriti25-optimization
+   git clone https://github.com/BrajeshMuwel17/Weighted-Polygon-Optimization.git
    ```
 
 3. Run the Python script:
-        python run.py
    ```
-   python optimize_polygon.py [input_file] [output_file]
+   python Run.py [input_file] [output_file]
    ```
    
    Where:
@@ -110,10 +121,15 @@ To run the solution:
 
 ### Input Format
 The input file should contain:
-- First line: Two integers N and M (grid dimensions)
-- Next N lines: M space-separated integers representing weights of points
+- First line: A single integers N (Number of Positive points)
+- Next N lines: 3 space-separated integers x, y, w (0 <= x,y <= 10,000 , w>=0) representing x coordinate, y coordinate, weight at point (x,y)
+- Next line : A single integers M  (Number of Negative points)
+- Next M lines: 3 space-separated integers x, y, w (0 <= x,y <= 10,000 , w<0) representing x coordinate, y coordinate, weight at point (x,y)
+- Sum of N and M combined does not exceed 10,000 ( 1 <= N+M <= 10,000)
 
 ### Output Format
 The output file will contain:
-- First line: Number of vertices in the polygon
-- Next V lines: Coordinates of each vertex in clockwise order
+- First line: A single integer representing the answer (total sum of weights enclosed)
+- Next line: Two integers - number of edges (E) and number of vertices (V) in the optimal polygon (1<= V,E <=1000)
+- Next V lines: Coordinates of each vertex of polygon (x,y)  (0<= x,y <= 10,000)
+- Additionally coordinates of Polygon can be floating point type
