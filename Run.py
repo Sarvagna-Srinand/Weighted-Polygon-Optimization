@@ -43,7 +43,7 @@ def run_for_input(input_file, index):
     try:
         with open(abs_input_file, "r") as f_in:
             # Run Knapsack without command-line arguments.
-            result = subprocess.run(["../Knapsack"], stdin=f_in, cwd=intermediate_dir)
+            result = subprocess.run(["./Knapsack.exe"], stdin=f_in, cwd=intermediate_dir)
             if result.returncode != 0:
                 print("Error running Knapsack.")
                 return 0
@@ -59,7 +59,7 @@ def run_for_input(input_file, index):
         return 0
     try:
         with open(boolean_b_path, "r") as f_in:
-            result = subprocess.run(["../PolygonConstruction"], stdin=f_in, cwd=intermediate_dir)
+            result = subprocess.run(["./PolygonConstruction.exe"], stdin=f_in, cwd=intermediate_dir)
             if result.returncode != 0:
                 print("Error running PolygonConstruction.")
                 return 0
@@ -92,7 +92,7 @@ def run_for_input(input_file, index):
     
     try:
         with open(combined_checker_input, "r") as f_in:
-            result = subprocess.run(["../checker"], stdin=f_in, cwd=intermediate_dir)
+            result = subprocess.run(["./checker.exe"], stdin=f_in, cwd=intermediate_dir)
             # result = subprocess.run(["./checker", "./intermediate/Edges.txt", combined_checker_input] , cwd=intermediate_dir)
             if result.returncode != 0:
                 print("Error running checker.")
@@ -106,7 +106,7 @@ def run_for_input(input_file, index):
     #    It reads from standard input (the original input file) and creates top250.txt in intermediate.
     try:
         with open(abs_input_file, "r") as f_in:
-            result = subprocess.run(["../Top250"], stdin=f_in, cwd=intermediate_dir)
+            result = subprocess.run(["./Top250.exe"], stdin=f_in, cwd=intermediate_dir)
             if result.returncode != 0:
                 print("Error running Top250.")
                 return 0

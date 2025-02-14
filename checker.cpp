@@ -32,7 +32,11 @@ F area(const Polygon<F>& poly) {
 
 template <class F>
 bool edge_inter(pair<Point<F>, Point<F>> e1, pair<Point<F>, Point<F>> e2) {
-    auto [p1, p2] = e1; auto [p3, p4] = e2;
+    // auto [p1, p2] = e1; auto [p3, p4] = e2;
+    auto p1=e1.first;
+    auto p2=e1.second;
+    auto p3=e2.first;
+    auto p4=e2.second;
     F x = p1.x, y = p3.y;
     return (min(p1.y, p2.y) < y && y < max(p1.y, p2.y) &&
             min(p3.x, p4.x) < x && x < max(p3.x, p4.x));
@@ -52,7 +56,9 @@ bool checker(vector<pair<Point<F>, Point<F>>>& edges, vector<Point<F>>& vertices
     map<Point<F>, Point<F>> hori, veri;
     map<Point<F>, int> deg;
     
-    for (auto& [p1, p2] : edges) {
+    for (auto& edge : edges) {
+        auto p1=edge.first;
+        auto p2=edge.second;
         if (p1 == p2) {
             //cout << p1.x << " " << p1.y << " "<<p2.x << " "<<p2.y << endl;
             cerr << "INVALID! Edge of 0 length\n";
@@ -67,8 +73,12 @@ bool checker(vector<pair<Point<F>, Point<F>>>& edges, vector<Point<F>>& vertices
         deg[p1]++; deg[p2]++;
     }
 
-    for (auto& [p1, p2] : edges) {
-        for (auto& [p3, p4] : edges) {
+    for (auto& e1 : edges) {
+        auto p1=e1.first;
+        auto p2=e1.second;
+        for (auto& e2 : edges) {
+            auto p3=e2.first;
+            auto p4=e2.second;
             if (p1 == p3 && p2 == p4) continue;
             bool hori1 = (p1.y == p2.y), hori2 = (p3.y == p4.y);
             if (hori1 && hori2) {
@@ -98,7 +108,8 @@ bool checker(vector<pair<Point<F>, Point<F>>>& edges, vector<Point<F>>& vertices
         }
     }
 
-    for (auto& [p, x] : deg) {
+    for (auto& d1 : deg) {
+        auto x=d1.second;
         if (x != 2) {
             cerr << "INVALID! Some vertex doesn't have a degree of 2\n";
             return false;
@@ -108,7 +119,8 @@ bool checker(vector<pair<Point<F>, Point<F>>>& edges, vector<Point<F>>& vertices
     map<Point<F>, bool> vis;
     dfs_for_check(edges[0].first, hori, veri, vis, vertices);
     
-    for (auto& [p, x] : deg) {
+    for (auto& d1 : deg) {
+        auto p=d1.first;
         if (!vis[p]) {
             cerr << "INVALID! There are holes!\n";
             return false;
@@ -150,7 +162,9 @@ ll score_calc(vector<pair<Point<F>, Point<F>>>& edges, vector<pair<Point<F>,int>
     if(checker(edges,vertices)) {
         if(area(vertices)<0) {reverse(vertices.begin(),vertices.end());}
         ll res = 0;
-        for(auto& [point,val]:given_shells_mines) {
+        for(auto& entry:given_shells_mines) {
+            auto point=entry.first;
+            auto val=entry.second;
             if(pointVsPolygon(point,vertices)!=1) res+=val;
         }
         return res;
@@ -259,6 +273,8 @@ int main() {
         cout<<num_edges<<" "<<num_edges<<endl;
         for(auto edge: edges){
             cout<<"("<<edge.first.x<<", "<<edge.first.y<<"), "<<"("<<edge.second.x<<", "<<edge.second.y<<")\n";
+            // cout<<"(("<<edge.first.x<<","<<edge.first.y << "),(" << edge.second.x << ","<< edge.second.y <<")),\n";
+
         }
     }
     
