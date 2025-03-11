@@ -17,12 +17,12 @@ mt19937 mt(time(nullptr));
 
 int totalRecSum = 0 ;
 const int L = 10000;
-const int Y = 25;  
+const int Y = 101;  
 const int Z = (L+Y-1) / Y;
 vector<vector<int> > A(Z, vector<int>(Z,0));
 vector<vector<bool>> B(Z, vector<bool>(Z, false));
-int no_of_subrows = 1;
-int no_of_subcols = 1; 
+int no_of_subrows = 2;
+int no_of_subcols = 2; 
 static int totalVertices  = no_of_subcols*no_of_subrows*4; 
 int recSize_inrow=(Z+no_of_subrows-1)/no_of_subrows;
 int recSize_incol = (Z+no_of_subcols-1)/no_of_subcols;
@@ -418,7 +418,7 @@ int checkValidRectangle (vector<vector<int>> &A,  bool ishorizontal, bool dir, E
 
 void annealing (int row,int col){
     
-    const double TIME_LIMIT = 150;
+    const double TIME_LIMIT = 5;
 	double start_time = get_clock();
 	double cur_time = 0.0;
     double temp_time = get_clock(); 
@@ -662,7 +662,7 @@ int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
     cout.tie(nullptr);
-    freopen("./input/input05.txt", "r", stdin);
+    // freopen("./input/input05.txt", "r", stdin);
 	int n, m;
 	cin >> n;
 	vector<point> P(n);
@@ -798,46 +798,27 @@ int main() {
         cout<<endl;
     }
     cout<<endl;
+    // return 0; 
 
-    /////// getPolygon abhi galat hhhhhhh !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// vector<point> poly = get_polygon(Z, Z, best_B);
-	// cout << poly.size() << endl;
-	// for (point p : poly) {
-	// 	cout << p.x * Y << ' ' << p.y * Y << endl;
-	// }
-    int totScore=0;
-    cout<<"curScore of subrectangles \n";
-    for(int i=0;i<no_of_subrows;i++){
-        for(int j=0;j<no_of_subcols;j++){
-            cout<<curScore[i][j]<<" "<<bestScore[i][j]<<"\n";
-            if(bestScore[i][j]>=0){
-                totScore+=bestScore[i][j];
-            }
+
+    freopen("./Boolean_B_Annealing.txt", "w", stdout);
+
+	for(int i=0; i<Z; i++) {
+         for(int j=0; j<Z; j++) { 
+             int aa = i/((Z+no_of_subrows-1)/no_of_subrows); 
+             int bb = j/((Z+no_of_subcols-1)/no_of_subcols); 
+             int cc = i%((Z+no_of_subrows-1)/no_of_subrows); 
+             int dd = j%((Z+no_of_subcols-1)/no_of_subcols); 
+             cout << best_B[aa][bb][cc][dd] << " ";
         }
-        cout<<endl;
+        cout << endl; 
     }
-    cout<<"\n";
-    cout<<"Total Score: "<<totScore<<endl;
+ 
+	fclose(stdout) ;
 
-    int totalVertices=0;
-    cout<<"Vertices of subrectangles \n";
-    for(int i=0;i<no_of_subrows;i++){
-        for(int j=0;j<no_of_subcols;j++){
-            cout<<edgeCount[i][j]<<" ";
-            totalVertices+=edgeCount[i][j];
-        }
-        cout<<endl;
-    }
-    cout<<endl;
-    cout<<"Total Vertices: "<<totalVertices<<endl;
-    cout<<"sum-: ";
-    cout<<"Total Positive "<<total_Positive<<endl;
-    
-    cout<<"percentage ";
-    double percentage = ((double) totScore) / ((double) total_Positive) * 100.00;
-    cout<<percentage<<endl;
-    cout<<"Hori "<<isHori<<" Ver "<<isVer<<endl;
+    return 0 ; 
 
-	return 0;
+	
+
     
 }

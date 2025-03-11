@@ -539,4 +539,7 @@ int main()
         // cout<<"{{"<<answer.first.first<<", "<<answer.first.second<<"},"<<"{"<<answer.second.first<<","<<answer.second.second<<"}},\n";
         cout<<answer.first.first<<" "<<answer.first.second<<" "<<answer.second.first<<" "<<answer.second.second<<"\n";
     }
+    fclose(stdout) ; 
+
+    return 0 ; 
 }

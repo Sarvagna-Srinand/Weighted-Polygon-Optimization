@@ -346,22 +346,6 @@ int main() {
 	
 
 
-	cout << "Reverse Knapsack answer" << endl ;
-    if(dp1[cluster_holes.size() - 1][tar] >= inf){
-        cout << "No Solution" << endl ; 
-    }
-    else{
-        cout << pos_score -dp1[cluster_holes.size() - 1][tar] << endl ; 
-        cout << (((pos_score -dp1[cluster_holes.size() - 1][tar] ) * 1.0) / sum) << endl << endl << endl  ; 
-        cout << (((actualvalue) * 1.0) / sum) << endl << endl << endl  ; 
-
-    }
-
-
-	// dp exact 
-
-
-	 
 	return 0;
     
 }
