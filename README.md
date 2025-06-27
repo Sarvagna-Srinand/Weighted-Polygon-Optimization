@@ -7,6 +7,13 @@ Given a set of points with associated weights (positive and negative), the goal 
 - Ensure the polygon has at most 1000 vertices
 - Account for points forming clusters based on adjacency (shared sides)
 
+## Algorithm Designed and Implemented by:
+   -Brajesh
+   -Harshit
+   -Mahaswin
+   -Tanmay
+   -Nakshatra
+
 ## Approach
 
 Our solution uses a combination of cluster analysis and dynamic programming:
