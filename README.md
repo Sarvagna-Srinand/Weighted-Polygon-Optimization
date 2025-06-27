@@ -8,11 +8,11 @@ Given a set of points with associated weights (positive and negative), the goal 
 - Account for points forming clusters based on adjacency (shared sides)
 
 ## Algorithm Designed and Implemented by:
-   -Brajesh
-   -Harshit
-   -Mahaswin
-   -Tanmay
-   -Nakshatra
+   - Brajesh
+   - Harshit
+   - Mahaswin
+   - Tanmay
+   - Nakshatra
 
 ## Approach
 
