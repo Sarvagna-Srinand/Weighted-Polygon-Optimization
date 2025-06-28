@@ -138,7 +138,7 @@ The output file will contain:
   
    -[@Harshit](https://github.com/harshit93020)
   
-   -[@mahaswin tedla ](https://github.com/mahaswint)
+   -[@Mahaswin](https://github.com/mahaswint)
   
    -[@Tanmay](https://github.com/tanmay31415926)
    
