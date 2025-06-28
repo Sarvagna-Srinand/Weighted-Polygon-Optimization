@@ -7,13 +7,6 @@ Given a set of points with associated weights (positive and negative), the goal 
 - Ensure the polygon has at most 1000 vertices
 - Account for points forming clusters based on adjacency (shared sides)
 
-## Algorithm Designed and Implemented by:
-   - Brajesh
-   - Harshit
-   - Mahaswin
-   - Tanmay
-   - Nakshatra
-
 ## Approach
 
 Our solution uses a combination of cluster analysis and dynamic programming:
@@ -140,3 +133,11 @@ The output file will contain:
 - Next line: Two integers - number of edges (E) and number of vertices (V) in the optimal polygon (1<= V,E <=1000)
 - Next V lines: Coordinates of each vertex of polygon (x,y)  (0<= x,y <= 10,000)
 - Additionally coordinates of Polygon can be floating point type
+
+- #Authors
+   -[@Brajesh](https://github.com/BrajeshMuwel17)
+   -[@Harshit](https://github.com/harshit93020)
+   -[@mahaswin tedla ](https://github.com/mahaswint)
+   -[@Tanmay](https://github.com/tanmay31415926)
+   -[@Nakshatra]
+   -[@Purab](https://github.com/PurabA )
