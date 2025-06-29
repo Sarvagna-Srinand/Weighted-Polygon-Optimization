@@ -132,16 +132,3 @@ The output file will contain:
 - Next V lines: Coordinates of each vertex of polygon (x,y)  (0<= x,y <= 10,000)
 - Additionally coordinates of Polygon can be floating point type
 
-## Authors
-
-   -[@Brajesh](https://github.com/BrajeshMuwel17)
-  
-   -[@Harshit](https://github.com/harshit93020)
-  
-   -[@Mahaswin](https://github.com/mahaswint)
-  
-   -[@Tanmay](https://github.com/tanmay31415926)
-   
-   -[@Nakshatra](https://github.com/tanmay31415926)
-   
-   -[@Purab](https://github.com/PurabA )
